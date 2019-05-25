@@ -143,6 +143,10 @@ var context_map = &contextMap{
 
 // curl_easy_init - Start a libcurl easy session
 func EasyInit() *CURL {
+	if TestEasyFail {
+		return nil
+	}
+
 	p := C.curl_easy_init()
 	c := &CURL{handle: p, mallocAllocs: make([]*C.char, 0)} // other field defaults to nil
 	context_map.Set(uintptr(p), c)
