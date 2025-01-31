@@ -409,7 +409,7 @@ func (curl *CURL) Getinfo(info CurlInfo) (ret interface{}, err error) {
 		debugf("Getinfo %s", ret)
 		return ret, err
 	case C.CURLINFO_SLIST:
-		a_ptr_slist := new(C.struct_curl_slist)
+		a_ptr_slist := (*C.struct_curl_slist)(nil)
 		err := newCurlError(C.curl_easy_getinfo_slist(p, cInfo, &a_ptr_slist))
 		ret := []string{}
 		for a_ptr_slist != nil {
