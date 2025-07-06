@@ -15,12 +15,22 @@ static char *string_array_index(char **p, int i) {
 import "C"
 
 import (
+	"errors"
 	"time"
 	"unsafe"
 )
 
+// Test variables to force curl methods to fail.
+var (
+	TestEasyFail   = false
+	TestGlobalFail = false
+)
+
 // curl_global_init - Global libcurl initialisation
 func GlobalInit(flags int) error {
+	if TestGlobalFail {
+		return errors.New("dummy error")
+	}
 	return newCurlError(C.curl_global_init(C.long(flags)))
 }
 
