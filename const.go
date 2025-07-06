@@ -197,3 +197,8 @@ const (
 	INFO_RTSP_SERVER_CSEQ = C.CURLINFO_RTSP_SERVER_CSEQ
 	INFO_RTSP_CSEQ_RECV   = C.CURLINFO_RTSP_CSEQ_RECV
 )
+
+// Note: @Ullaakut: Restore timeout option that was removed as part of https://github.com/andelf/go-curl/commit/6ce6d3d813611db0bd4627ae077467e33aa456cb
+const (
+	OPT_TIMEOUT_MS = C.CURLOPT_TIMEOUT_MS
+)
